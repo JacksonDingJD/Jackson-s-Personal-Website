@@ -1,8 +1,7 @@
 ---
-layout: basic
+layout: Main
+title: Jackson's Personal Website
 ---
-
-# Jackson-s-Personal-Website
 
 [Cycloidal Drive](Cycloidal_Drive.md)
 
