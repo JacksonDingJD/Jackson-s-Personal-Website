@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Jackson Projects
 ---
 
 # Personal Website
