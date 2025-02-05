@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: basic
 ---
 
 # Jackson-s-Personal-Website
