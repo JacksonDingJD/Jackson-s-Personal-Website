@@ -1,3 +1,0 @@
-# Cycloidal Drive
-
-Testing things
