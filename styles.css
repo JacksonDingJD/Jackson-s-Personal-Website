@@ -1,0 +1,50 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-color: #ff9800;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: #1e1e1e;
+    padding: 20px;
+}
+
+nav a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.hero, .projects, .project-details {
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.project-card {
+    background: #1e1e1e;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+.project-card a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background: #1e1e1e;
+}
