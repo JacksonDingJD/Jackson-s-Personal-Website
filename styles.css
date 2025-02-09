@@ -36,6 +36,34 @@ nav a {
 .hero, .projects, .project-details {
     margin: 50px auto;
     max-width: 800px;
+    padding-bottom: 50px;
+}
+
+.intro {
+    margin: 20px auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    max-width: 1100px;
+    display: flex;
+    align-items: center; /* Vertically center text */
+    gap: 30px; /* Adds spacing between image and text */
+}
+
+.intro img{
+    width: 500px; /* Set same size for both images */
+    height: 500px; /* Ensures consistent height */
+    border-radius: 50%; /* Optional: Adds rounded corners */
+    object-fit: cover;
+    margin-right: 40px;
+    transform: translateX(-5%); /* Moves the image slightly to the left */
+}
+
+.intro p {
+    flex: 1; /* Makes text expand to take more horizontal space */
+    font-size: 18px;
+    line-height: 1.6; /* Improves readability */
+    text-align: left;
+    max-width: 600px;
 }
 
 .project-card {
