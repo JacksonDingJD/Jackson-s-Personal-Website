@@ -67,3 +67,17 @@ footer {
     padding: 20px;
     margin-top: auto; /* This ensures it stays at the bottom */
 }
+
+.image-container{
+    display: flex; /* Makes images align horizontally */
+    justify-content: center; /* Centers images */
+    gap: 20px; /* Adds space between images */
+    margin-bottom: 20px;
+}
+
+.project-image {
+    width: 400px; /* Set same size for both images */
+    height: 400px; /* Ensures consistent height */
+    object-fit: cover; /* Keeps images from stretching */
+    border-radius: 15px; /* Adds rounded corners */
+}
