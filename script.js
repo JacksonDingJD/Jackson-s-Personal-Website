@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const projects = {
         1: {
-            title: "Robotic Arm",
-            description: "A smart, soft, and compliant end effector project."
+            title: "Compliant End Effector",
+            description: "A smart and compliant end effector project."
         },
         2: {
-            title: "Solar Car Suspension",
-            description: "Enhancing the suspension system of a solar car."
+            title: "Cycloidal Drive",
+            description: "A 1:9 gear ratio homemade cycloidal drive."
         }
     };
 
