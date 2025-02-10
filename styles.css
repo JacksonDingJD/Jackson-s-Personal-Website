@@ -109,3 +109,41 @@ footer {
     object-fit: cover; /* Keeps images from stretching */
     border-radius: 15px; /* Adds rounded corners */
 }
+
+@media (max-width: 768px) { /* Applies when screen width is 768px or smaller */
+    
+    .intro {
+        flex-direction: column; /* Stacks image and text vertically */
+        text-align: center; /* Centers text for better readability */
+        gap: 20px;
+    }
+
+    .intro img {
+        width: 80%; /* Make image responsive */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0 auto; /* Center image */
+        transform: none; /* Remove left shift on mobile */
+    }
+
+    .intro p {
+        max-width: 90%; /* Makes text take up most of the screen */
+        text-align: center; /* Center align text */
+    }
+
+    .image-container {
+        flex-direction: column; /* Stack images vertically */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .project-image {
+        width: 90%; /* Make project images responsive */
+        height: auto;
+    }
+
+    .btn-custom {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+}
