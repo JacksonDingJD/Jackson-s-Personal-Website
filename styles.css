@@ -119,8 +119,8 @@ footer {
     }
 
     .intro img {
-        width: 80%; /* Make image responsive */
-        height: auto; /* Maintain aspect ratio */
+        width: 200px; /* Make image responsive */
+        height: 200px; /* Maintain aspect ratio */
         margin: 0 auto; /* Center image */
         transform: none; /* Remove left shift on mobile */
     }
