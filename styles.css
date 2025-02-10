@@ -142,40 +142,92 @@ footer {
     width: 100%;
 }
 
-@media (max-width: 768px) { /* Applies when screen width is 768px or smaller */
+@media (max-width: 1024px) { /* For tablets (iPads) and smaller */
     
-    .intro {
-        flex-direction: column; /* Stacks image and text vertically */
-        text-align: center; /* Centers text for better readability */
-        gap: 20px;
+    .project-details {
+        max-width: 90%; /* Ensures content doesn't get too narrow */
+        padding: 20px;
     }
 
-    .intro img {
-        width: 200px; /* Make image responsive */
-        height: 200px; /* Maintain aspect ratio */
-        margin: 0 auto; /* Center image */
-        transform: none; /* Remove left shift on mobile */
+    .project-details img {
+        width: 100%; /* Make images responsive */
+        height: auto;
+        border-radius: 10px;
     }
 
-    .intro p {
-        max-width: 90%; /* Makes text take up most of the screen */
-        text-align: center; /* Center align text */
-    }
-
-    .image-container {
-        flex-direction: column; /* Stack images vertically */
+    .project-details .video-container {
+        flex-direction: column; /* Stack videos vertically */
         align-items: center;
-        gap: 15px;
     }
 
-    .project-image {
-        width: 90%; /* Make project images responsive */
+    .project-details .video-container video {
+        max-width: 100%; /* Make videos fit screen width */
         height: auto;
     }
 
     .btn-custom {
         display: block;
-        width: 80%;
-        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin-top: 10px;
     }
 }
+
+@media (max-width: 768px) { /* For phones */
+
+    .intro {
+        flex-direction: column; /* Stack image and text */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .intro img {
+        width: 250px; /* Reduce size for smaller screens */
+        height: 250px;
+        margin: 0 auto;
+        transform: none; /* Remove left shift */
+    }
+
+    .intro p {
+        max-width: 95%;
+        text-align: center;
+    }
+
+    .project-details {
+        flex-direction: column;
+        max-width: 95%;
+        padding: 20px;
+    }
+
+    .project-details img {
+        width: 100%; /* Full width images */
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .project-details p {
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    .video-container {
+        flex-direction: column; /* Stack videos */
+        align-items: center;
+        width: 100%;
+    }
+
+    .video-container video {
+        max-width: 100%; /* Scale video width */
+        height: auto;
+    }
+
+    .btn-custom {
+        width: 90%; /* Larger tap area */
+        padding: 14px;
+        font-size: 16px;
+        margin: 10px auto;
+    }
+}
+
