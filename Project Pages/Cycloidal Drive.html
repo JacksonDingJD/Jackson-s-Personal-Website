@@ -16,7 +16,53 @@
     </header>
     <section class="project-details">
         <h2>Cycloidal Drive</h2>
-        <p>lorum ipsum</p>
+        <p>Cycloidal gearboxes are a special type of gearboxes that can create large gear reductions with minimal backlash with the use of roller pins and cycloidal disks. This homemade gearbox is made from 3D printed pieces, bearings bought from amazon, and standard M5 screws.</p>
+        <div>
+            <img src="../images/Cycloidal Drive/CADModel.png" alt="">
+            <img src="../images/Cycloidal Drive/WithCover.JPG" alt="with cover">
+        </div>
+        <p>When designing the disk it is important to get the right geometry for the cycloidal disk with consideration to a couple of parameters. Here are the steps I used to determine those parameters.</p>
+        <p>First, the pin diameter which was 22mm and the radius would be 11mm. This parameter was based on the OD of the bearing which I used as roller pins inside the cycloidal drive. Then after putting some circles down in fusion, visually it made sense to have 10 teeth to get a 1:9 gear ratio. To find the gear ratio for cycloidal drives use the following equation:</p>
+        <p>number of pins/(number of pins - number of loves on the disk)</p>
+        <p>Usually the difference between the pins and the lobes is 1 so if I had 10 teeths, the reduction ratio would be 9.</p>
+        <p>Next I determined the radius of which the pins will be placed in this scenario I had a diameter of 100mm just based on looking at the 2D sketch on CAD.</p>
+        <p>Then, I can determine the eccentricity value which is usually half to quarter of the pin radius in this scenario it is 3mm.</p>
+        <p>Next we will need the two circles to create the points for the spline that creates the cycloidal shape based on the following equations:</p>
+        <p>gear ratio = r1 / r2 = 9</p>
+        <p>r = d / 2 = 100 / 2 = 50</p>
+        <p>r1 = gear ratio * r2</p>
+        <p>r1 = r-r2</p>
+        <p>Solving these equations, r1 = 45, r2 = 5. Using this information I drew two circles from tangent to each other with the larger circle placed in the center.</p>
+        <p>Now I can create a line that is the length of the eccentricity from the center of the smaller circle that I just created. Then I created an angle measurement between this line and the line that connects the center of the r1 circle to the r2 circle. The angle from this line to the vertical should be the angle between eccentric line with the r1 line divided by the gear ratio which is 9.</p>
+        <p>Then changing the angle of the eccentric line, I can create dots along the end of the eccentric line. Using splines I can then connect the dots and create a offsets that moves the shape in the radius of my pins to create the disk shape.</p>
+        <div>
+            <img src="../images/Cycloidal Drive/2DSketch.png" alt="2D Sketch">
+        </div>
+        <p>For next bit of geometry, the holes that are placed within the cycloidal disks should have a diameter of the diameter of the output pins plus two times the eccentricity value. The distance that the output pin is placed from the center should be the same distance that the holes on the cycloidal disk is placed from the center.</p>
+        <p>Lastly, for the input shaft, the distance between center of the input shaft and the center of the eccentric bearing should be half the eccentricity value.</p>
+        <p>This might seem compliated but these two videos and the solid works tutorial combined will cover all of the important information.</p>
+        <a href="https://www.youtube.com/watch?v=guvatctnjww" class="btn-custom">Design a cycloidal gear step by step</a>
+        <a href="https://www.youtube.com/watch?v=jQ6LQBFZXmU" class="btn-custom">How to Design a Cycloidal Disk in Fusion 360</a>
+        <a href="https://blogs.solidworks.com/teacher/2014/07/building-a-cycloidal-drive-with-solidworks.html" class="btn-custom">Building a Cycloidal Drive with SolidWorks</a>
+        <p>This cycloidal shape drawing process can also be done with parametric equations as well, although it is not ready in fusion360 yet with the following equations.</p>
+        <p>X = (R*cos(t))-(Rr*cos(t+arctan(sin((1-N)t)/((R/EN)-cos((1-N)t)))))-(Ecos(Nt))</p>
+        <p>Y = (-R*sin(t))+(Rrsin(t+arctan(sin((1-N)t)/((R/EN)-cos((1-N)t)))))+(Esin(Nt))</p>
+        <p>If the cycloidal drive is designed perfectly, there should only be one point of contact with every pin from each lobe on the cycloidal disk.</p>
+        <div>
+            <img src="../images/Cycloidal Drive/noCover.jpg" alt="inside of cycloidal drive">
+        </div>
+        <p>Overall no documentation allowed me to make this on the first try. I went through a couple of prototypes with regards to disk shapes, the input pin size, the output pin sizes, and the geometry to get things rotating properly.</p>
+        <p>This documentation isn’t written for a tutorial, but feel free to reach out of you have any questions. The next step would be to connect a NEMA motor with the cycloidal drive to do some testing.</p>
+        <div class="video-container">
+            <video width="640" height="360" controls>
+                <source src="../videos/Cycloidal Drive/CoverVid.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video width="640" height="360" controls>
+                <source src="../videos/Cycloidal Drive/noCoverVid.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </section>
     <footer>
         <p>&copy; 2025 Jackson</p>
