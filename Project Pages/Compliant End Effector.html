@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Compliant End Effector</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+        </nav>
+    </header>
+    <section class="project-details">
+        <h2>Compliant End Effector</h2>
+        <p>The compliant end effector project was started as apart of a Lunar Rover Research program directed by professor Serdar Kaylay from the Toronto Metropolitan University.</p>
+        <div>
+            <img src="../images/Compliant End Effector/RealWholeAssembly.JPG" alt="">
+        </div>
+        <p>The key concept behind the design of this end effector is to enable robots to achieve dexterous control and cooperation autonomously. Hence the compliance became a crucial requirement to provide flexible yet precise object manipulation in unstructured space environments.</p>
+        <p>The design of the end effector is quite simple. Essentially, the end effector is a claw that consists of two compliant fingers which are string driven through a pulley. The fingers 3D printed with TPU with adjusted slot geometries to ensure its compliance. The trapezoidal shape provided more rigidity to the claw when it is compressed and the last slot was thickened to create more of a pinching movement. Surgical tubing were then used to hold the fingers open.</p>
+        <div>
+            <img src="../images/Compliant End Effector/fingerItSelf.png" alt="">
+        </div>
+        <p>Two Force Sensitive Resistors (FSRs) were then mounted on each finger to measure the pressure that each finger experienced when controlling an object. The entirety of the claw was then placed on a wrist and linear slider system that provided linear movements and vertical rotational movements. </p>
+        <div>
+            <img src="../images/Compliant End Effector/FSRs.JPG" alt="">
+            <img src="../images/Compliant End Effector/Pulley.JPG" alt="">
+        </div>
+        <p>The data from the FSRs are sent into an ESP32 Dev Module which also powers the three servos with one controlling the wrist, one controlling the linear slider, and one for controlling the end effector. Then through a PD control system, the end effector simulated dexterous manipulation of an object whenever there was outside force applied into the object.</p>
+        <p>For next steps, the design can be tested with fingers that are 3D printed with different TPU materials to adjust its stiffness and sensitivity. Furthermore, the thickness in each slot of the finger can be adjusted to experiment the pinching motion that the fingers constitute. Lastly, a axis torque sensor can be mounted on the claw to be integrated onto an actual small scale rover for testing.</p>
+        <p>Here is the research paper related to this project.</p>
+        <a href="https://ijses.com/wp-content/uploads/2024/09/24-IJSES-V8N9.pdf" class="btn-custom">Force-Sensitive Gripper for Autonomous Manipulation in Unstructured Space Environments</a>
+    </section>
+    <footer>
+        <p>&copy; 2025 Jackson</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
