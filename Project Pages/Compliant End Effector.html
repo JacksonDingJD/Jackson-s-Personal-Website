@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details</title>
     <link rel="stylesheet" href="../styles.css">
+    <!-- Highlight.js Theme (Dark Mode) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
 </head>
 <body>
     <header>
@@ -31,6 +33,57 @@
             <img src="../images/Compliant End Effector/Pulley.JPG" alt="">
         </div>
         <p>The data from the FSRs are sent into an ESP32 Dev Module which also powers the three servos with one controlling the wrist, one controlling the linear slider, and one for controlling the end effector. Then through a PD control system, the end effector simulated dexterous manipulation of an object whenever there was outside force applied into the object.</p>
+        <pre><code class="language-cpp">
+            unsigned long currentTime = millis();
+            int topLeftReading = analogRead(topLeft);         // Read the value from FSR connected to A0
+            int topRightReading = analogRead(topRight);       // Read the value from FSR connected to A1
+            int bottomLeftReading = analogRead(bottomLeft);   // Read the value from FSR connected to A2
+            int bottomRightReading = analogRead(bottomRight); // Read the value from FSR connected to A3
+          
+            // Calculate average readings for left and right sides
+            int leftAverage = (topLeftReading + bottomLeftReading) / 2;
+            int rightAverage = (topRightReading + bottomRightReading) / 2;
+          
+            // Calculate error for slider (difference between left and right readings)
+            float error_slider = rightAverage - leftAverage + normaldiff_slider;
+          
+            // Calculate error for wrist (difference between top and bottom readings)
+            float error_wrist_left = topLeftReading - bottomLeftReading;
+            float error_wrist_right = topRightReading - bottomRightReading;
+          
+            // Combine wrist errors into a single control output
+            float error_wrist = (error_wrist_left - error_wrist_right) / 2 - normaldiff_wrist;
+          
+            // Calculate derivative components
+            float derivative_slider = error_slider - previousError_slider;
+            float derivative_wrist = error_wrist - previousError_wrist;
+          
+            // PID control for the slider
+            float pidOutput_slider = 0;
+            if (abs(error_slider) > threshold_slider)
+            {
+              pidOutput_slider = Kp_slider * error_slider + Kd_slider * derivative_slider;
+              currentSliderPosition += pidOutput_slider;                        // Adjust the current position by PID output
+              currentSliderPosition = constrain(currentSliderPosition, 0, 180); // Constrain to valid servo range
+            }
+          
+            // PID control for the wrist
+            float pidOutput_wrist = 0;
+            if (abs(error_wrist) > threshold_wrist)
+            {
+              pidOutput_wrist = Kp_wrist * error_wrist + Kd_wrist * derivative_wrist;
+              currentWristPosition += pidOutput_wrist;                        // Adjust the current position by PID output
+              currentWristPosition = constrain(currentWristPosition, 0, 180); // Constrain to valid servo range
+            }
+          
+            // Move the servos to the new positions
+            slider.write(currentSliderPosition);
+            wrist.write(currentWristPosition);
+          
+            // Update previous errors for the next loop iteration
+            previousError_slider = error_slider;
+            previousError_wrist = error_wrist;
+        </code></pre>
         <p>For next steps, the design can be tested with fingers that are 3D printed with different TPU materials to adjust its stiffness and sensitivity. Furthermore, the thickness in each slot of the finger can be adjusted to experiment the pinching motion that the fingers constitute. Lastly, a axis torque sensor can be mounted on the claw to be integrated onto an actual small scale rover for testing.</p>
         <p>Here is the research paper related to this project.</p>
         <a href="https://ijses.com/wp-content/uploads/2024/09/24-IJSES-V8N9.pdf" class="btn-custom">Force-Sensitive Gripper for Autonomous Manipulation in Unstructured Space Environments</a>
@@ -38,6 +91,9 @@
     <footer>
         <p>&copy; 2025 Jackson</p>
     </footer>
-    <script src="../script.js"></script>
+    <!-- Highlight.js Core Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Auto-detect and highlight all code -->
+    <script>hljs.highlightAll();</script>
 </body>
 </html>
