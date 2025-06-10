@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fatigue Testing Machine</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+        </nav>
+    </header>
+    <section class="project-details">
+        <h2>Indentation Fatigue Testing Machine</h2>
+        <p>This project is a research project that tests the strength of 3D printed PLA plastic strips with different solid infill patterns from Bambu Studio including the Rectilinear, Hilbert Curve, Archamedian Spiral and the Octagram Spiral Pattern. By building a stress test machine to gather stress data and how many iterations it took to break plastic pieces, it was concluded that the Rectilinear pattern was the strongest.</p>
+        <div class="image-container-column">
+            <img src="../images/Fatigue Stress Machine/Archamedian Broken.jpeg" alt="">
+            <img src="../images/Fatigue Stress Machine/Hilbert Broken.jpeg" alt="">
+            <img src="../images/Fatigue Stress Machine/Octagram Broken.jpeg" alt="">
+        </div>
+        <p>Three solid infill patterns were tested: Archimedean Chords, Octagram Spiral, and Hilbert Curve. Each was printed using a Bambu Labs P1P printer with controlled parameters such as temperature, layer height, and print pattern. A custom fatigue testing machine was developed using Arduino and a linear actuator to apply cyclic indentation on the test pieces. Through multiple design iterations—each improving mechanical stability and measurement accuracy—the final version used a digital force gauge and horizontally mounted setup to record data with high fidelity.</p>
+        <p>The design consists of a linear actuator as a probe that moves back and forth in cycles, indenting a 0.2mm x 50.8mm x 12.7mm thin PLA piece to test the fatigue strength of the infill pattern in each piece of plastic. The machine has a base on which the stress gauge is mounted. The linear actuator is mounted on a housing connected to the stress gauge; when stress is applied to the test pieces from the linear actuator, it is picked up by the stress gauge. On top of the linear actuator, a 3D printed tip is mounted to customize the stress applied to the 3D printed pieces. Two holes and slots were used to mount the tested pieces at the top of the base. All electronic modules are controlled through an Arduino UNO microcontroller. Three main iterations of the fatigue-inducing machine were created, differentiated by different stress gauges: an S-type beam load cell, a single-point weight beam, and a digital force gauge.</p>
+        
+        <div>
+            <img src="../images/Fatigue Stress Machine/First Iteration.JPG" alt="2D Sketch">
+            <img src="../images/Fatigue Stress Machine/Second Iteration.JPG" alt="2D Sketch">
+            <img src="../images/Fatigue Stress Machine/Third Iteration.JPG" alt="2D Sketch">
+        </div>
+        <p>For each infill pattern, multiple sets of data were collected tracking stress levels over cycles until rupture. Archimedean Chords showed the highest durability, averaging 345 cycles, while Hilbert Curve averaged only 45 cycles before failing. Octagram Spiral showed moderate performance with around 220 cycles. Graphs of stress vs. cycles and yield stress values helped quantify the fatigue behavior. Archimedean Chords also had the slowest decrease in stress over time, indicating greater resilience.</p>
+        <a href="https://docs.google.com/document/d/1k6Wa43HasJg_nuPDwshWwQHkOcyvo_xtlZ7Q2jxIzA0/edit?usp=sharing" class="btn-custom">Research Paper</a>
+        
+        <div>
+            <img src="../images/Fatigue Stress Machine/Figure 13.jpeg" alt="inside of cycloidal drive">
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Jackson</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
