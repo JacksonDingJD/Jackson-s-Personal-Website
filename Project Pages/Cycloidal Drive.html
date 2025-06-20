@@ -23,7 +23,7 @@
         </div>
         <p>When designing the disk it is important to get the right geometry for the cycloidal disk with consideration to a couple of parameters. Here are the steps I used to determine those parameters.</p>
         <p>First, the pin diameter which was 22mm and the radius would be 11mm. This parameter was based on the OD of the bearing which I used as roller pins inside the cycloidal drive. Then after putting some circles down in fusion, visually it made sense to have 10 teeth to get a 1:9 gear ratio. To find the gear ratio for cycloidal drives use the following equation:</p>
-        <p>number of pins/(number of pins - number of loves on the disk)</p>
+        <p>number of pins/(number of pins - number of lobes on the disk)</p>
         <p>Usually the difference between the pins and the lobes is 1 so if I had 10 teeths, the reduction ratio would be 9.</p>
         <p>Next I determined the radius of which the pins will be placed in this scenario I had a diameter of 100mm just based on looking at the 2D sketch on CAD.</p>
         <p>Then, I can determine the eccentricity value which is usually half to quarter of the pin radius in this scenario it is 3mm.</p>
@@ -44,6 +44,7 @@
         <a href="https://www.youtube.com/watch?v=guvatctnjww" class="btn-custom">Design a cycloidal gear step by step</a>
         <a href="https://www.youtube.com/watch?v=jQ6LQBFZXmU" class="btn-custom">How to Design a Cycloidal Disk in Fusion 360</a>
         <a href="https://blogs.solidworks.com/teacher/2014/07/building-a-cycloidal-drive-with-solidworks.html" class="btn-custom">Building a Cycloidal Drive with SolidWorks</a>
+        <a href="https://forum.onshape.com/discussion/7567/cycloidal-gear-generator" class="btn-custom">A Great Onshape Feature Script</a>
         <p>This cycloidal shape drawing process can also be done with parametric equations as well, although it is not ready in fusion360 yet with the following equations.</p>
         <p>X = (R*cos(t))-(Rr*cos(t+arctan(sin((1-N)t)/((R/EN)-cos((1-N)t)))))-(Ecos(Nt))</p>
         <p>Y = (-R*sin(t))+(Rrsin(t+arctan(sin((1-N)t)/((R/EN)-cos((1-N)t)))))+(Esin(Nt))</p>
