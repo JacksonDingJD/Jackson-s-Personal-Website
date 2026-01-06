@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>PawtWhole Detector</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+        </nav>
+    </header>
+    <section class="project-details">
+        <h2>Pothole Detection</h2>
+        <p>PawtWhole is a TinyML-based road condition sensing system that turns everyday vehicles into mobile road sensors. Built around a Seeed Studio XIAO ESP32-S3 and a compact 9-axis IMU, the device continuously collects accelerometer and gyroscope data while a car is in motion and processes it locally on the microcontroller. Instead of relying on cloud computation or manual user reports, the system performs real-time inference on-device using a lightweight convolutional neural network. Detected road irregularities are streamed to a companion web application, where they are logged, mapped, and visualized to create a fine-grained profile of road surface quality over time. This approach enables passive, scalable data collection without distracting the driver or requiring any interaction while driving.</p>
+        <p>The project evolved from an initial binary pothole-versus-normal classifier into a richer multi-class model capable of distinguishing between different types and severities of bumps and potholes. Sensor data is sampled at 50 Hz and segmented into short, overlapping time windows that capture the vibration signatures produced when a vehicle encounters road defects. These windows are normalized and processed by a compact 1D time-series CNN designed to efficiently learn temporal patterns while remaining small enough to fit strict microcontroller memory and compute constraints. The final model is fully quantized using TensorFlow Lite Micro and occupies only about 17 KB, allowing it to run reliably on embedded hardware powered by a small lithium battery. Despite its size, the model achieves strong performance in real-world testing, demonstrating that meaningful road classification can be achieved entirely at the edge.</p>
+        <p>During deployment, the firmware continuously performs inference on incoming sensor data and outputs both a predicted road condition and an associated confidence score. When an anomaly is detected, the system provides immediate audio feedback through a buzzer and emits structured JSON messages containing the classification, probability, and timestamp. These messages are consumed by a custom React-based web application that interfaces with the device over USB serial and uses browser-based GPS to place detections on an interactive map. The web interface also provides basic analytics such as distance traveled, anomaly counts, and confidence statistics. The long-term vision for PawtWhole is to enable safer and more informed routing, support city-scale infrastructure planning through crowdsourced data, and provide richer environmental context for advanced driver assistance and autonomous vehicle systems.</p>
+        <div class="image-container-column">
+            <div class="image-container-row">
+                <img src="../images/PawtWhole/5GraphsFrom6Classes.png" alt="">
+                <img src="../images/PawtWhole/accuracy_plot_presentation.png" alt="">
+
+            </div>
+            <img src="../images/PawtWhole/confusion_matrices_comparison.png" alt="">
+            <div class="image-container-row">
+                <img src="../images/PawtWhole/IMG_9797.JPG" alt="">
+                <img src="../images/PawtWhole/Screenshot 2026-01-06 082633.png" alt="">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Jackson</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
