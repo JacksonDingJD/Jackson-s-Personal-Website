@@ -1,11 +1,11 @@
 :root {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --accent-color: #B8B3EA;
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --accent-color: #000000;
 }
 
 html, body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
@@ -17,9 +17,33 @@ html, body {
 }
 
 header {
-    background: #1e1e1e;
-    padding: 20px;
+    background: var(--bg-color);
+    padding: 15px 20px;
     font-size: large;
+}
+
+header h1 {
+    margin: 0 0 8px 0;
+}
+
+header a {
+    color: var(--text-color);
+}
+
+body.home header,
+body.home .intro,
+body.home .hero {
+    text-align: left;
+}
+
+body.home header {
+    padding-left: 40px;
+}
+
+body.home .intro,
+body.home .hero {
+    margin: 0;
+    padding-left: 40px;
 }
 
 main {
@@ -28,15 +52,23 @@ main {
 
 nav a {
     color: var(--accent-color);
-    text-decoration: none;
+    text-decoration: underline;
     margin: 0 15px;
     font-size: 18px;
 }
 
-.hero, .projects{
-    margin: 50px auto;
+.hero {
+    margin: 20px auto;
     max-width: 800px;
+}
+
+.projects {
+    margin: 50px auto;
+    max-width: 1100px;
     padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .project-details{
@@ -63,50 +95,59 @@ nav a {
 }
 
 .intro {
-    margin: 20px auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    max-width: 1100px;
-    display: flex;
-    align-items: center; /* Vertically center text */
-    gap: 30px; /* Adds spacing between image and text */
-}
-
-.intro img{
-    width: 500px; /* Set same size for both images */
-    height: 500px; /* Ensures consistent height */
-    border-radius: 50%; /* Optional: Adds rounded corners */
-    object-fit: cover;
-    margin-right: 40px;
-    transform: translateX(-5%); /* Moves the image slightly to the left */
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    max-width: none;
 }
 
 .intro p {
-    flex: 1; /* Makes text expand to take more horizontal space */
     font-size: 18px;
-    line-height: 1.6; /* Improves readability */
-    text-align: left;
-    max-width: 600px;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.intro a {
+    color: var(--text-color);
 }
 
 .project-card {
-    background: #1e1e1e;
-    padding: 15px;
-    margin: 15px;
+    background: var(--bg-color);
+    padding: 10px;
+    margin: 0;
     border-radius: 5px;
+}
+
+.project-card h3 {
+    font-size: 16px;
+    margin: 8px 0 4px 0;
+}
+
+.project-card p {
+    font-size: 13px;
 }
 
 .project-card img {
     width: 100%;
-    height: 220px;
+    height: 140px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
+.project-card img.thumb-top {
+    object-position: center 25%;
+}
+
+.project-card .btn-custom {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
 .btn-custom {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid #000;
     padding: 12px 24px;
     display: inline-block;
     font-weight: bold;
@@ -117,12 +158,13 @@ nav a {
 }
 
 .btn-custom:hover {
-    background-color: #8981DD; /* Darker shade on hover */
-    color: white;
+    background-color: #000;
+    color: #fff;
 }
 
 footer {
-    background: #1e1e1e;
+    background: var(--bg-color);
+    border-top: 1px solid #000;
     padding: 20px;
     margin-top: auto; /* This ensures it stays at the bottom */
 }
@@ -206,22 +248,9 @@ code{
 
 @media (max-width: 768px) { /* For phones */
 
-    .intro {
-        flex-direction: column; /* Stack image and text */
-        text-align: center;
-        gap: 20px;
-    }
-
-    .intro img {
-        width: 250px; /* Reduce size for smaller screens */
-        height: 250px;
-        margin: 0 auto;
-        transform: none; /* Remove left shift */
-    }
-
     .intro p {
         max-width: 95%;
-        text-align: center;
+        white-space: normal;
     }
 
     .project-details {
