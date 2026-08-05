@@ -58,6 +58,10 @@ nav a {
     text-align: left;
 }
 
+.project-details ul {
+    text-align: left;
+}
+
 .intro {
     margin: 20px auto;
     padding-top: 50px;

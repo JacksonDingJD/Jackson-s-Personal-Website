@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Armold &mdash; 5-DOF Robotic Arm</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+        </nav>
+    </header>
+    <section class="project-details">
+        <h2>Armold &mdash; 5-DOF Robotic Arm</h2>
+
+        <div class="video-container" style="display: flex; justify-content: center;">
+            <video width="640" height="360" controls>
+                <source src="../videos/5DOF Robot Arm/IMG_1081.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <h3>Overview</h3>
+        <p>Armold is a 5-DOF robotic arm built with help from Sweep Dynamics, whose mechanical design it's based on. I built it around a completely different electronics and control stack &mdash; new motors, a CAN bus architecture, a custom <code>ros2_control</code> hardware interface, and modified printed parts to fit it all. The goal was a platform that runs a real motion-planning stack end to end: Cartesian goal poses down through inverse kinematics to closed-loop motors on a CAN bus.</p>
+        <div>
+            <img src="../images/5DOF Robot Arm/IMG_1470.JPG" alt="Armold 5-DOF Robot Arm">
+        </div>
+
+        <h3>Hardware</h3>
+        <p>The joints are driven by <strong>MKS Servo42D closed-loop steppers</strong> in <code>SR_vFOC</code> mode, each on its own CAN ID (01&ndash;05). Output reduction comes from <strong>1:26 cycloidal drives designed by Sweep Dynamics</strong> &mdash; high ratio in a compact envelope, low backlash, and enough torque density to hold the arm's weight without sagging between planning cycles. Backlash matters more than it seems: every degree of slop at a joint compounds through the kinematic chain into end-effector error, degrading how well the computed IK solution matches reality.</p>
+        <p>Integrating the reducers wasn't drop-in &mdash; I modified the provided models to match my motor mounts, shaft interface, and printer tolerances. Two lessons from that:</p>
+        <ul>
+            <li><strong>SolidWorks STL export for URDF meshes:</strong> "Translate to positive space" must be off, and each joint needs its own coordinate system, or meshes land in the wrong place in the kinematic tree.</li>
+            <li><strong>Print tolerancing:</strong> Bambu Studio's XY compensation is applied per-side (radius, not diameter) &mdash; matters for cycloidal discs and pin housings that need to run without slop.</li>
+        </ul>
+        <p>The gripper is a hobby PWM servo driven by an ESP32 over LEDC, on its own 5&ndash;6 V supply, kept separate from the CAN side.</p>
+        <div>
+            <img src="../images/5DOF Robot Arm/IMG_1483.JPG" alt="Armold joint and cycloidal drive detail">
+            <img src="../images/5DOF Robot Arm/IMG_1484.JPG" alt="Armold electronics and CAN wiring">
+        </div>
+
+        <h3>Kinematics</h3>
+        <p>Armold is a 5-DOF serial chain &mdash; base yaw, shoulder pitch, elbow pitch, wrist pitch, and wrist roll &mdash; terminating in a fixed <code>tool0</code> frame at the gripper mount, described in a URDF with each joint's axis and origin pulled from CAD.</p>
+        <p>Forward kinematics chains the joint transforms into a tool pose; inverse kinematics solves the useful direction &mdash; given a desired pose, what joint angles reach it &mdash; which is what makes the arm commandable in task space instead of joint space. MoveIt 2 solves this numerically from the URDF via KDL. A few implications worth knowing:</p>
+        <ul>
+            <li><strong>5 DOF can't reach arbitrary 6-DOF poses.</strong> One orientation degree of freedom is unreachable, so task planning has to leave a component free or accept solver failures on some requested poses.</li>
+            <li><strong>Numerical IK can fail even on reachable poses.</strong> KDL seeds from the current configuration and iterates; poor seeds or near-singular configurations (near full extension, wrist axis aligned with shoulder axis) cause timeouts.</li>
+            <li><strong>IK is only one layer.</strong> MoveIt runs OMPL for a collision-free path, then time-parameterizes it into a trajectory with velocity and acceleration limits before it's streamed to the controllers &mdash; the source of one of my more frustrating bugs, below.</li>
+        </ul>
+
+        <h3>Electronics and CAN</h3>
+        <p>A Raspberry Pi 4 runs the stack, talking to the motor bus through an <strong>MKS CANable V2.0 Pro USB-CAN adapter</strong>, bridged into ROS 2 with <code>ros2_socketcan</code> on <code>can0</code> at 500 kbit/s. The bus is a daisy chain of CANH/CANL with 120 &Omega; termination at both ends, motor power on a separate parallel rail.</p>
+        <p>Things that cost me time:</p>
+        <ul>
+            <li>The motors I already had were the RS-485 variant, not CAN &mdash; the Servo42D ships in both and they look nearly identical.</li>
+            <li>Wire color isn't a reliable indicator of CANH vs. CANL; only the silkscreen labels are trustworthy. Swapping them kills communication without damaging anything, which makes it easy to chase the wrong cause.</li>
+            <li>CAN needs a shared ground reference between adapter and drivers &mdash; single-point grounding, not tied into the high-current motor return path.</li>
+            <li>Motor calibration failures were a wiring problem, not a sensor problem: a "Reverse Lookup Error" traces back to incorrect A+/A&minus;/B+/B&minus; phase wiring, not the mechanics.</li>
+            <li>The constant high-pitched hiss in FOC mode is normal &mdash; the PWM current loop holding position. Rough buzzing or grinding is what actually signals a problem.</li>
+        </ul>
+
+        <h3>Software</h3>
+        <p>ROS 2 Jazzy with MoveIt 2 and <code>ros2_control</code>, split across three packages:</p>
+        <ul>
+            <li><code>my_arm_description</code> &mdash; URDF and meshes, the source of truth for the kinematic chain</li>
+            <li><code>my_arm_moveit_config</code> &mdash; SRDF, planning group, kinematics solver config, joint limits</li>
+            <li><code>my_arm_hardware</code> &mdash; a custom <code>SystemInterface</code> plugin (<code>ArmSystem</code>) owning the CAN read/write path to the Servo42D boards</li>
+        </ul>
+        <p>Development happens on a Windows 11 laptop through WSL2 (Ubuntu 24.04); the Pi runs headless over SSH as the deployment target, with CycloneDDS handling middleware across the two. I got the full pipeline running against mock hardware first &mdash; <code>move_group</code>, <code>controller_manager</code>, <code>joint_state_broadcaster</code>, <code>arm_controller</code>, and <code>/joint_states</code> all healthy &mdash; before swapping in real motors, so hardware bugs stayed isolated from planning/IK bugs.</p>
+
+        <h3>Debugging Notes Worth Writing Down</h3>
+        <p>The failures that ate the most hours were almost all configuration, not code:</p>
+        <ul>
+            <li><code>joint_limits.yaml</code> must set <code>has_acceleration_limits: true</code> and a <code>max_acceleration</code>. Without them, IK resolves, OMPL finds a plan, and <code>AddTimeOptimalParameterization</code> silently fails on every one &mdash; RViz shows nothing useful, the real error only shows in <code>rqt_console</code>.</li>
+            <li>Always rebuild every edited package. Stale copies in <code>install/</code> caused multi-hour ghost-hunts &mdash; building only the package you're actively editing isn't enough.</li>
+            <li>In Jazzy, <code>ros2_control_node</code> gets <code>robot_description</code> from the <code>/robot_description</code> topic published by <code>robot_state_publisher</code>, not as a node parameter. Passing it as a parameter starves the controller manager with no obvious complaint.</li>
+            <li>The controller config file must be named <code>ros2_controllers.yaml</code> and live in the MoveIt config package's <code>config/</code> directory for <code>MoveItConfigsBuilder</code> to pick it up &mdash; anywhere else and it's silently ignored.</li>
+            <li>Exit code <code>-11</code> on shutdown is usually just Ctrl+C teardown noise, not a startup segfault &mdash; check <code>ros2 node list</code> before assuming a crash.</li>
+        </ul>
+
+        <h3>Where It's Going</h3>
+        <p>Next up is finishing the real CAN command implementation in the hardware interface's <code>read()</code>/<code>write()</code> bodies, then adding a camera. Longer term, the goal is using Armold as a platform for LeRobot/VLA experimentation, with the <code>ros2_control</code> hardware interface bridging learned policies to the motors.</p>
+        <p>One constraint already run into: the Servo42D closed-loop steppers aren't backdrivable, so kinesthetic teaching isn't practical with this hardware &mdash; any demonstration pipeline will have to come from teleoperation instead.</p>
+
+        <div class="video-container" style="display: flex; justify-content: center;">
+            <video width="640" height="360" controls>
+                <source src="../videos/5DOF Robot Arm/IMG_1481 (1).MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Jackson</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
