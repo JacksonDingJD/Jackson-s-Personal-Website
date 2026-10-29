@@ -92,6 +92,18 @@ nav a {
     border-radius: 10px;
 }
 
+.project-details img.drawing {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    border: 1px solid #000;
+}
+
+.project-details pre code {
+    max-height: 480px;
+    overflow: auto;
+}
+
 .project-details p {
     text-align: left;
 }
