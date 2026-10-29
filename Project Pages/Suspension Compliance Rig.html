@@ -22,23 +22,23 @@
         <p>For ride rate, I put scales at each corner, mounted dial indicators on the front and rear, had someone stand on the chassis, and measured deflection at the chassis tubes. The early data was a little sketchy (the brakes weren't on, which let the car move more than it should), but the trend was clear and I planned to redo it with the brakes locked. I got values like FL: 90.62, FR: 93.86, RL: 175.12, RR: 132.47 lbs/in.</p>
         <div>
             <img src="../images/Suspension Compliance Rig/IMG_0497.JPG" alt="Ride Rate Testing Setup">
-            <img src="../images/Suspension Compliance Rig/IMG_0498.JPG" alt="Tire Rate Testing Setup">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0498.JPG" alt="Tire Rate Testing Setup">
         </div>
         <p>For tire rate, the first setup (a plate on top of a single tire with weights) failed because the tire wedged and the whole thing was unstable. The second setup lined up two tires horizontally with a plate and weights on top, treating each tire as two springs in series and two of those in parallel. That gave around 546 lbs/in per tire at 20 psi, which is on the soft side. The takeaway was that I need a proper rig constrained by linear slides to get clean, repeatable numbers.</p>
 
         <h3>Measuring Kinematics</h3>
         <p>The original plan used lasers mounted to the wheel nut with fake shocks to push the wheel through bump and droop, reading toe and camber off how the laser dots moved (toe = arctan(&Delta;x/distance), camber = arctan(&Delta;y/x)). The newer setup put the car on jacks and used a scissor lift to move the wheel, with angle sensors reading camber directly. The angle sensor resolves to about 0.1&deg;, and I measured roughly 5.2&deg; of camber change with steer and 1.3&deg; with bump.</p>
         <div>
-            <img src="../images/Suspension Compliance Rig/IMG_0199.JPG" alt="Kinematics Measurement Setup">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0199.JPG" alt="Kinematics Measurement Setup">
         </div>
 
         <h3>Measuring Compliance</h3>
         <p>This was the most involved part. I modified our existing torsion rig so it could apply force at the contact patch, using an I-beam to keep the reaction forces internal and a dyno load cell to read the load. The car sits on jacks with the steering locked. The targets were toe and camber as functions of Mz and Fy, which combine into compliance coefficients. I ran FEA on the rig, the anchor, and a revised version to make sure nothing yielded under the max lateral load of 1650 N, iterating from V1 (which exceeded yield) to V2 (which didn't).</p>
         <div>
-            <img src="../images/Suspension Compliance Rig/IMG_0628.JPG" alt="Compliance Rig Setup">
-            <img src="../images/Suspension Compliance Rig/IMG_0753.JPG" alt="Compliance Rig Load Application">
-            <img src="../images/Suspension Compliance Rig/IMG_0757.JPG" alt="Compliance Rig Detail">
-            <img src="../images/Suspension Compliance Rig/IMG_0761.JPG" alt="Compliance Rig Detail">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0628.JPG" alt="Compliance Rig Setup">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0753.JPG" alt="Compliance Rig Load Application">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0757.JPG" alt="Compliance Rig Detail">
+            <img loading="lazy" decoding="async" src="../images/Suspension Compliance Rig/IMG_0761.JPG" alt="Compliance Rig Detail">
         </div>
 
         <h3>What I Took Away</h3>

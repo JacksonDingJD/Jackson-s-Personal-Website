@@ -21,12 +21,12 @@
         <p>The key concept behind the design of this end effector is to enable robots to achieve dexterous control and cooperation autonomously. Hence the compliance became a crucial requirement to provide flexible yet precise object manipulation in unstructured space environments.</p>
         <p>The design of the end effector is quite simple. Essentially, the end effector is a claw that consists of two compliant fingers which are string driven through a pulley. The fingers 3D printed with TPU with adjusted slot geometries to ensure its compliance. The trapezoidal shape provided more rigidity to the claw when it is compressed and the last slot was thickened to create more of a pinching movement. Surgical tubing were then used to hold the fingers open.</p>
         <div>
-            <img src="../images/Compliant End Effector/fingerItSelf.png" alt="">
+            <img loading="lazy" decoding="async" src="../images/Compliant End Effector/fingerItSelf.png" alt="">
         </div>
         <p>Two Force Sensitive Resistors (FSRs) were then mounted on each finger to measure the pressure that each finger experienced when controlling an object. The entirety of the claw was then placed on a wrist and linear slider system that provided linear movements and vertical rotational movements. </p>
         <div>
-            <img src="../images/Compliant End Effector/FSRs.JPG" alt="">
-            <img src="../images/Compliant End Effector/Pulley.JPG" alt="">
+            <img loading="lazy" decoding="async" src="../images/Compliant End Effector/FSRs.JPG" alt="">
+            <img loading="lazy" decoding="async" src="../images/Compliant End Effector/Pulley.JPG" alt="">
         </div>
         <p>The data from the FSRs are sent into an ESP32 Dev Module which also powers the three servos with one controlling the wrist, one controlling the linear slider, and one for controlling the end effector. Then through a PD control system, the end effector simulated dexterous manipulation of an object whenever there was outside force applied into the object.</p>
         <pre><code class="language-cpp">

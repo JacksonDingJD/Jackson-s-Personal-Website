@@ -14,7 +14,7 @@
         <h2>Armold &mdash; 5-DOF Robotic Arm</h2>
 
         <div class="video-container" style="display: flex; justify-content: center;">
-            <video width="640" height="360" controls>
+            <video preload="metadata" width="640" height="360" controls>
                 <source src="../videos/5DOF Robot Arm/IMG_1081.MOV" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -35,9 +35,9 @@
         </ul>
         <p>The gripper is a hobby PWM servo driven by an ESP32 over LEDC, on its own 5&ndash;6 V supply, kept separate from the CAN side.</p>
         <div>
-            <img src="../images/5DOF Robot Arm/IMG_1483.JPG" alt="Armold joint and cycloidal drive detail">
-            <img src="../images/5DOF Robot Arm/IMG_1484.JPG" alt="Armold electronics and CAN wiring">
-            <img src="../images/5DOF Robot Arm/Screenshot 2026-08-05 132230.png" alt="CAD assembly view of Armold's joint stack">
+            <img loading="lazy" decoding="async" src="../images/5DOF Robot Arm/IMG_1483.JPG" alt="Armold joint and cycloidal drive detail">
+            <img loading="lazy" decoding="async" src="../images/5DOF Robot Arm/IMG_1484.JPG" alt="Armold electronics and CAN wiring">
+            <img loading="lazy" decoding="async" src="../images/5DOF Robot Arm/Screenshot 2026-08-05 132230.png" alt="CAD assembly view of Armold's joint stack">
         </div>
 
         <h3>Kinematics</h3>
@@ -84,7 +84,7 @@
         <p>One constraint already run into: the Servo42D closed-loop steppers aren't backdrivable, so kinesthetic teaching isn't practical with this hardware &mdash; any demonstration pipeline will have to come from teleoperation instead.</p>
 
         <div class="video-container" style="display: flex; justify-content: center;">
-            <video width="640" height="360" controls>
+            <video preload="metadata" width="640" height="360" controls>
                 <source src="../videos/5DOF Robot Arm/IMG_1481 (1).MOV" type="video/mp4">
                 Your browser does not support the video tag.
             </video>

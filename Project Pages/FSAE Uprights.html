@@ -20,7 +20,7 @@
         <p>I built the load cases from first principles in MATLAB, checked them against the team's legacy spreadsheet, and validated the design with a nonlinear multibody FEA of the full bolted assembly in ANSYS. The final upright holds a 2.3x minimum safety factor across the worst-case load cases at 17% less mass than the starting design. It is machined from 7075-T6 aluminum and assembled with 4340 steel NAS fasteners, designed in SolidWorks and analyzed in ANSYS Mechanical to NASA-STD-5020 and ASME Y14.5.</p>
         <div>
             <img src="../images/FSAE Uprights/Front_Uprights.png" alt="Front upright assembly CAD">
-            <img src="../images/FSAE Uprights/Rear_Uprights.png" alt="Rear upright assembly CAD">
+            <img loading="lazy" decoding="async" src="../images/FSAE Uprights/Rear_Uprights.png" alt="Rear upright assembly CAD">
         </div>
 
         <h3>The Problem</h3>
@@ -158,8 +158,8 @@ disp(T)</code></pre>
         <p>I modeled the upright as the real assembly of separate bodies rather than one bonded solid. A bonded model behaves like a single machined part, so it can't show what actually fails a bolted assembly: joints gapping open, interfaces slipping, or load taking an unexpected path between parts. The upright, bearing plates, camber bracket, shim, and every NAS fastener are separate bodies joined by frictional contact.</p>
         <p>The 7075-T6 parts use a bilinear isotropic hardening model so local yielding at stress concentrations is captured instead of reported as an unrealistically high elastic peak, and they are judged by von Mises stress. Compressive regions such as the bearing seats are judged by minimum principal stress. The model is linked to SolidWorks through the associative reader, and named selections are built from rule-based criteria rather than hand-picked faces, so contacts and loads stay attached every time the CAD changes.</p>
         <div>
-            <img src="../images/FSAE Uprights/wheelhub_FEA.png" alt="Von Mises stress in the front upright, wheel hub load case">
-            <img src="../images/FSAE Uprights/TRTLS_FEA.png" alt="Von Mises stress in the front upright, TRTLS load case">
+            <img loading="lazy" decoding="async" src="../images/FSAE Uprights/wheelhub_FEA.png" alt="Von Mises stress in the front upright, wheel hub load case">
+            <img loading="lazy" decoding="async" src="../images/FSAE Uprights/TRTLS_FEA.png" alt="Von Mises stress in the front upright, TRTLS load case">
         </div>
 
         <h4>Fixing the Boundary Conditions</h4>
@@ -185,9 +185,9 @@ disp(T)</code></pre>
         <h3>Results</h3>
         <p>The final upright holds a 2.3x minimum safety factor across every worst-case load case at 17% less mass. I released its GD&amp;T drawings to ASME Y14.5 to external CNC manufacturers, with the tolerance stack-up checked across the upright and gearbox interface.</p>
         <div>
-            <img class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet1.png" alt="Front upright drawing, sheet 1 of 3">
-            <img class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet2.png" alt="Front upright drawing, sheet 2 of 3: sections A-A and B-B with GD&amp;T callouts">
-            <img class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet3.png" alt="Front upright drawing, sheet 3 of 3: sections C-C, D-D, and E-E">
+            <img loading="lazy" decoding="async" class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet1.png" alt="Front upright drawing, sheet 1 of 3">
+            <img loading="lazy" decoding="async" class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet2.png" alt="Front upright drawing, sheet 2 of 3: sections A-A and B-B with GD&amp;T callouts">
+            <img loading="lazy" decoding="async" class="drawing" src="../images/FSAE Uprights/Front_Upright_Sheet3.png" alt="Front upright drawing, sheet 3 of 3: sections C-C, D-D, and E-E">
         </div>
         <a href="../images/FSAE Uprights/Front_Upright.pdf" class="btn-custom" target="_blank" rel="noopener noreferrer">View Front Upright Drawing (.PDF)</a>
 
