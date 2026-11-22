@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cold-Email-Outreach is a private engineering networking assistant that manages contact tracking in Google Sheets and prepares unsent Gmail drafts for human review.">
+  <title>Cold-Email-Outreach | Jackson Ding</title>
+  <link rel="canonical" href="https://www.jcksnding.com/cold-email-outreach/">
+  <link rel="stylesheet" href="/cold-email-outreach/style.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="/cold-email-outreach/">Cold-Email-Outreach</a>
+    <a class="back" href="/">Back to engineering portfolio</a>
+  </nav>
+  <main>
+    <p class="eyebrow">Private engineering networking utility</p>
+    <h1>Cold-Email-Outreach</h1>
+    <p class="lead">A personal, owner-operated workflow for organizing professional engineering contacts, preparing individualized networking email drafts, and tracking outreach for internship recruiting.</p>
+    <div class="panel">
+      <p><strong>This is not a public email service.</strong> The application is currently built for the developer's own use. It prepares email drafts in a connected Google account; the owner reviews and sends any message manually.</p>
+    </div>
+
+    <h2>What the application does</h2>
+    <ul>
+      <li><strong>Google Sheets:</strong> Reads and updates a designated private contact tracker containing professional names, roles, work email addresses, research notes, and draft status.</li>
+      <li><strong>Gmail:</strong> Confirms the connected account and creates or checks unsent Gmail drafts. It does not automatically send messages or read inbox conversations.</li>
+      <li><strong>Personalization:</strong> Uses entered contact details and role-based templates to tailor outreach. Contact-specific claims are used only when an observation and a source URL have been supplied; the current workflow does not independently verify that source.</li>
+      <li><strong>Automation:</strong> Runs Python code using GitHub Actions. Scheduled draft creation is currently disabled, and the workflow includes limits to prevent bulk drafting.</li>
+      <li><strong>Optional contact lookup:</strong> Separate, manually authorized Apollo API lookups may be used to import professional contact information; this is not part of the Google account authorization flow.</li>
+    </ul>
+
+    <h2>Google permissions requested</h2>
+    <p>The app requests Google's <code>gmail.compose</code> scope to manage drafts and <code>spreadsheets</code> scope to read and edit the designated contact tracker. These OAuth scopes grant broader technical capabilities than the functions currently used: in particular, <code>gmail.compose</code> also permits sending email, although this application's code has no email-sending operation. The workflow is designed for draft creation and manual review.</p>
+    <p>Authorization is optional and can be revoked through <a href="https://myaccount.google.com/connections">Google Account connections</a>.</p>
+
+    <h2>Privacy and terms</h2>
+    <p>Please read the <a href="/cold-email-outreach/privacy-policy/">Privacy Policy</a> for the data-access, storage, retention, and deletion practices of this tool and the <a href="/cold-email-outreach/terms/">Terms of Use</a> for its operating conditions.</p>
+    <p class="small">Developer: Jackson Ding. For questions about this application or data handling, contact <a href="mailto:jtding@engineering.upenn.edu">jtding@engineering.upenn.edu</a>.</p>
+  </main>
+  <footer>
+    <a href="/cold-email-outreach/">App home</a>
+    <a href="/cold-email-outreach/privacy-policy/">Privacy Policy</a>
+    <a href="/cold-email-outreach/terms/">Terms of Use</a>
+    <a href="/">Portfolio</a>
+  </footer>
+</body>
+</html>
