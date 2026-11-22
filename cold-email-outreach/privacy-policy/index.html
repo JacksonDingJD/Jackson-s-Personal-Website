@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy policy describing Google Sheets and Gmail access for the private Cold-Email-Outreach application.">
+  <title>Privacy Policy | Cold-Email-Outreach</title>
+  <link rel="canonical" href="https://www.jcksnding.com/cold-email-outreach/privacy-policy/">
+  <link rel="stylesheet" href="/cold-email-outreach/style.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="/cold-email-outreach/">Cold-Email-Outreach</a>
+    <a class="back" href="/">Back to engineering portfolio</a>
+  </nav>
+  <main>
+    <p class="eyebrow">Cold-Email-Outreach</p>
+    <h1>Privacy Policy</h1>
+    <p class="small">Last updated: November 22, 2026</p>
+    <p>This policy describes the current private, owner-operated version of Cold-Email-Outreach, developed by Jackson Ding. It is a Python and GitHub Actions utility for organizing professional contacts and preparing unsent networking email drafts. It does not offer a public account-registration service.</p>
+
+    <h2>Google user data accessed</h2>
+    <ul>
+      <li><strong>Google Sheets:</strong> With the <code>https://www.googleapis.com/auth/spreadsheets</code> permission, the application reads and edits the specifically configured Google Sheets contact tracker. It processes contact names, professional email addresses, job titles, companies, research notes, draft IDs, and outreach statuses. The OAuth permission itself can authorize access to other spreadsheets, but the current workflow uses only the spreadsheet configured by the owner.</li>
+      <li><strong>Gmail:</strong> With the <code>https://www.googleapis.com/auth/gmail.compose</code> permission, the application checks the authorized account's email address, creates unsent Gmail drafts, and may retrieve a draft to verify its creation. The current code does not read inbox messages or send email. The scope technically permits sending, but the implemented workflows do not use that capability.</li>
+      <li><strong>Authentication credentials:</strong> Google OAuth client details, refresh tokens, and short-lived access tokens are used solely to authenticate the owner's approved Google API requests.</li>
+    </ul>
+
+    <h2>How this data is used</h2>
+    <p>Google user data is used only to operate the requested contact-tracking and Gmail-draft features, verify that the correct Google account is connected, prevent duplicate drafts, and perform owner-initiated connectivity checks. The application does not use Google user data for advertising, sale, profiling, or training generalized artificial-intelligence models. There is no automated email-sending feature.</p>
+    <p>Optional Apollo API contact lookups are a separate owner-initiated feature that retrieves professional contact information. The current Google integration does not transmit Google Sheets or Gmail user data to Apollo. No external AI research or generation service is connected to the current version of this application.</p>
+
+    <h2>Storage, service providers, and security</h2>
+    <ul>
+      <li>Contact records and outreach status remain in the owner's designated Google Sheet. Draft messages remain in the owner's Gmail account.</li>
+      <li>OAuth refresh credentials are kept on the owner's own computer in a private local configuration file and in encrypted GitHub Actions repository secrets, rather than in the public website repository.</li>
+      <li>When a workflow is initiated, GitHub Actions temporarily runs the code and communicates with Google APIs over encrypted connections. Operational logs and metadata may be retained by GitHub under its service policies; the code is designed not to print tokens or entire contact lists.</li>
+      <li>Google and GitHub process relevant information as infrastructure providers for the requested features. No Google user data is sold or shared with advertising platforms.</li>
+    </ul>
+    <p>The public documentation pages do not include sign-in forms, analytics scripts, or embedded trackers. Normal technical request logs may still be handled by the website's hosting provider.</p>
+
+    <h2>Retention, access removal, and deletion</h2>
+    <p>Contact records are retained in the Google Sheet until the owner edits or deletes them. Gmail drafts remain in Gmail until the owner deletes them or otherwise manages them. OAuth credentials remain available in the owner's local environment and GitHub repository secrets until replaced or deleted. GitHub workflow logs may be retained according to the repository's settings and GitHub's policies.</p>
+    <p>To stop access, revoke Cold-Email-Outreach in <a href="https://myaccount.google.com/connections">Google Account connections</a> and remove the related OAuth credentials from GitHub Actions Secrets and any local configuration files. To remove contact or draft content, delete it from the relevant Google Sheet or Gmail account. For data-access or deletion questions, contact the developer below.</p>
+
+    <h2>Google API Services User Data Policy</h2>
+    <p>Use and transfer of information received from Google APIs by Cold-Email-Outreach adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements. Google user data is accessed only to provide or improve the app's user-facing functions, subject to the practices described in this policy.</p>
+
+    <h2>Updates and contact</h2>
+    <p>If the functionality or data processing changes, this policy will be updated before those new uses are enabled. For questions or requests regarding this application, contact <a href="mailto:jtding@engineering.upenn.edu">jtding@engineering.upenn.edu</a>.</p>
+    <p><a href="/cold-email-outreach/">Return to application homepage</a></p>
+  </main>
+  <footer>
+    <a href="/cold-email-outreach/">App home</a>
+    <a href="/cold-email-outreach/privacy-policy/" aria-current="page">Privacy Policy</a>
+    <a href="/cold-email-outreach/terms/">Terms of Use</a>
+    <a href="/">Portfolio</a>
+  </footer>
+</body>
+</html>
